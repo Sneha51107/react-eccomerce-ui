@@ -1,35 +1,10 @@
-//import products from "../../data/productdata";
-import { useState, useEffect } from "react";
+import products from "../../data/productdata";
 import smartwatch2 from "../../assets/smartwatch2.png";
 
-//export default function Shop({addtocart,search,setsearch}) {
-export default function Shop({ addtocart, search }) {
-
-  const [products, setProducts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-
-  fetch("https://fakestoreapi.com/products")
-
-    .then((response) => response.json())
-
-    .then((data) => {
-
-      const electronics = data.filter(
-        (item) => item.category === "electronics"
-      );
-
-      setProducts(electronics);
-
-      setLoading(false);
-
-    });
-
-}, []);
+export default function Shop({addtocart,search,setsearch}) {
  const filteredProducts = products.filter((product) =>
 
-    product.title
+    product.name
       .toLowerCase()
       .includes(search.toLowerCase())
 
@@ -63,7 +38,7 @@ export default function Shop({ addtocart, search }) {
             <div className="flex justify-center">
               <img
                 src={product.image}
-                alt={product.title}
+                alt={product.name}
                 className="h-40 object-contain"
               />
             </div>
@@ -72,7 +47,7 @@ export default function Shop({ addtocart, search }) {
             <div className="mt-4 space-y-1">
 
               <h2 className="font-semibold text-gray-800">
-                {product.title}
+                {product.name}
               </h2>
 
               <p className="text-lg font-bold text-red-500">
